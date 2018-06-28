@@ -2,8 +2,8 @@
  "manifest_version": 2,
  "name": "Take A Break",
  "description": "The most popular movies and TV shows in your   default tab. Includes ratings, summaries and the ability to watch trailers.",
- "version": "1",
- "author": "Jake Prins",
+ "version": "1.0.0",
+ "author": "Nitish Phanse",
   "browser_action": {
     "default_icon": "logo.png",
    "default_popup": "popup.html",
@@ -15,9 +15,13 @@
       "js": ["contentScript.js"]
     }
   ],
- "permissions": ["activeTab", "tabs"],
+ "permissions": ["activeTab", "tabs", "storage"],
  "web_accessible_resources": [
    "logo.png",
    "content.css"
- ]
+ ],
+ "background": {
+   "scripts": ["background.js"],
+   "persistent": false
+ }
 }

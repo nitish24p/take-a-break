@@ -5,14 +5,17 @@ console.log('loading cs');
 
 chrome.runtime.onMessage.addListener(msgObj => {
   const { message } = msgObj;
+  console.log(msgObj);
   switch (message) {
     case 'SHOW_POP_UP':
       document.querySelector('body').insertAdjacentHTML('beforeend', modalString);
-      const button = document.querySelector('.timer-button');
-      button.onclick = closePopModal;
+      const buttons = document.querySelectorAll('.timer-button');
+      buttons.forEach(button => button.addEventListener('click', closePopModal));
+      //button.onclick = closePopModal;
       break;
 
     case 'REMOVE_POP_UP':
+      console.log('come over here')
       const modal = document.querySelector('.white-opaque');
       document.body.removeChild(modal);
       break;
@@ -27,7 +30,7 @@ chrome.runtime.onMessage.addListener(msgObj => {
 
 function closePopModal() {
   const count = 1;
-  chrome.runtime.sendMessage({ type: "START_REMOVING_POPUP", count: count });
+  chrome.runtime.sendMessage({ message: "START_REMOVING_POPUP", count: count });
 }
 
 function injectStyles(url) {

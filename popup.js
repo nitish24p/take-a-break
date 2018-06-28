@@ -17,7 +17,8 @@ Timer.prototype.handleButtonClick = function () {
   console.log("CLICKED THIS SHITTY BUTTON");
   const message = 'SHOW_POP_UP'
   //{active: true, currentWindow: true} or {} for all
-  this.sendMessageToTab({ message })
+  //this.sendMessageToTab({ message });
+  this.sendMessage({message});
 };
 
 Timer.prototype.sendMessageToTab = function(message, onlyToActiveTab) {
@@ -31,6 +32,10 @@ Timer.prototype.sendMessageToTab = function(message, onlyToActiveTab) {
         chrome.tabs.sendMessage(tab.id, message);
     });
   });
+}
+
+Timer.prototype.sendMessage = function(message) {
+  chrome.runtime.sendMessage(message);
 }
 
 Timer.prototype.messageListener = function (message, sender) {
