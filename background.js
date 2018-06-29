@@ -33,14 +33,14 @@ chrome.runtime.onMessage.addListener((messageObj, sender) => {
       sendMessageToTabs({ message: messageContent });
       break;
 
-    case: 'SET_TIME_INTERVAL';
+    case 'SET_TIME_INTERVAL':
       timeInterval = setInterval(() => {
         messageContent = 'SHOW_POP_UP'
         sendMessageToTabs({ message: messageContent});
         clearInterval(timeInterval);
       }, messageObj.timeInterval);
 
-    case: 'RESET_TIMER';
+    case 'RESET_TIMER':
       timeInterval = setInterval(() => {
         messageContent = 'SHOW_POP_UP'
         sendMessageToTabs({ message: messageContent});
