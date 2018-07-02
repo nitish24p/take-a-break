@@ -14,6 +14,7 @@
   z-index: 99999;
 }
 
+
 .time-over-card {
   display: flex;
   height: 300px;
@@ -31,18 +32,22 @@
 .time-over-message-container {
   flex: 2;
   padding: 20px;
-  background: #ed6d46;
+  background: #c5c5c5;
 }
 
-.time-over-message-container h2 {
-  color: yellow 
+.time-over-message-container .heading {
+  color: #333;
+  font-size: 30px;
 }
 
-.time-over-message-container p {
-  color: #2d2d2d
+.time-over-message-container .text {
+  color: #333;
+  font-size: 16px;
+  margin: 20px 0px;
 }
 
 .time-over-message-container .timer-button {
+  margin: 10px 0px;
   display: inline-block;
   min-height: 42px;
   line-height: 42px;
@@ -65,6 +70,11 @@
   border-radius: 3px;
   padding: 0px 16px;
   transition: border-color 0.25s, background 0.25s;
+}
+
+.time-over-message-container .secondary {
+  background:rgb(250, 250, 250);
+  color:  rgb(235, 84, 36);
 }
 
 .time-over-message-container .timer-button:focus {
@@ -115,7 +125,7 @@
   margin: 200px auto;
   z-index: 2;
   background: white;
-  border: 15px solid #ed6e46;
+  border: 6px solid #ed6e46;
   border-radius: 50%;
   width: 125px;
   height: 125px;
@@ -245,7 +255,7 @@
 .handle {
   position: absolute;
   top: -61px;
-  left: 41px;
+  left: 32px;
   border: 8px solid gray;
   border-radius: 50px 50px 0 0;
   width: 75px;

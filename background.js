@@ -1,11 +1,45 @@
-
-function sendMessage(message) {
-  chrome.runtime.sendMessage(message);
+function Background() {
+  this.timeInterval = null;
 }
 
-let timeInterval;
+Background.prototype.init = function () {
+  chrome.runtime.onMessage.addListener(this.messageListener.bind(this));
+}
 
-function sendMessageToTabs(message, onlyToActiveTab) {
+Background.prototype.messageListener = function (messageObj, sender) {
+  console.log(messageObj, sender);
+  const { message } = messageObj;
+  let messageContent = '';
+  switch (message) {
+    case 'START_REMOVING_POPUP':
+      messageContent = 'REMOVE_POP_UP'
+      this.sendMessageToTabs({ message: messageContent });
+      break;
+
+    case 'SET_TIME_INTERVAL':
+      this.timeInterval = setTimeout(() => {
+        messageContent = 'SHOW_POP_UP'
+        this.sendMessageToTabs({ message: messageContent });
+      }, messageObj.timeInterval);
+      break;
+
+    case 'STOP_TIMER_CLIENT':
+      clearTimeout(this.timeInterval);
+      messageContent = 'REMOVE_POP_UP'
+      this.sendMessageToTabs({ message: messageContent });
+      break;
+
+    case 'STOP_TIMER':
+      clearTimeout(this.timeInterval);
+      break;
+
+    default:
+      break;
+  }
+}
+
+Background.prototype.sendMessageToTabs = function (message, onlyToActiveTab) {
+  console.log("come here", message);
   const config = {};
   if (onlyToActiveTab) {
     config.active = true;
@@ -18,45 +52,7 @@ function sendMessageToTabs(message, onlyToActiveTab) {
   });
 }
 
-chrome.runtime.onMessage.addListener((messageObj, sender) => {
-  console.log(messageObj);
-  const { message } = messageObj;
-  let messageContent = '';
-  switch (message) {
-    case 'SHOW_POP_UP':
-      messageContent = 'SHOW_POP_UP'
-      sendMessageToTabs({ message: messageContent});
-      break;
-
-    case 'START_REMOVING_POPUP':
-      messageContent = 'REMOVE_POP_UP'
-      sendMessageToTabs({ message: messageContent });
-      break;
-
-    case 'SET_TIME_INTERVAL':
-      timeInterval = setInterval(() => {
-        messageContent = 'SHOW_POP_UP'
-        sendMessageToTabs({ message: messageContent});
-        clearInterval(timeInterval);
-      }, messageObj.timeInterval);
-
-    case 'RESET_TIMER':
-      timeInterval = setInterval(() => {
-        messageContent = 'SHOW_POP_UP'
-        sendMessageToTabs({ message: messageContent});
-        clearInterval(timeInterval);
-      }, messageObj.timeInterval);
-  
-    default:
-      break;
-  }
-})
-
-
-function Background() {
-
-}
-
-Background.prototype.init = function() {
-
+window.onload = function (params) {
+  const backgroundScript = new Background();
+  backgroundScript.init();
 }

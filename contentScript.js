@@ -1,4 +1,4 @@
-//alert('I Am content');
+=//alert('I Am content');
 //chrome.runtime.onMessage.addListener()
 
 console.log('loading cs');
@@ -19,18 +19,14 @@ chrome.runtime.onMessage.addListener(msgObj => {
       const modal = document.querySelector('.white-opaque');
       document.body.removeChild(modal);
       break;
-  
+
     default:
       break;
   }
-  // do something with msgObj
-  console.log(msgObj);
- 
 });
 
 function closePopModal() {
-  const count = 1;
-  chrome.runtime.sendMessage({ message: "START_REMOVING_POPUP", count: count });
+  chrome.runtime.sendMessage({ message: "START_REMOVING_POPUP" });
 }
 
 function injectStyles(url) {
@@ -41,8 +37,6 @@ function injectStyles(url) {
 }
 
 injectStyles(chrome.extension.getURL('content.css'));
-
-console.log(chrome.runtime);
 
 const modalString = `
   <div class="white-opaque">
@@ -73,9 +67,10 @@ const modalString = `
 
       </div>
       <div class="time-over-message-container">
-        <h2>Hey you!!</h2>
-        <p>Quit staring at the screen</p>
-        <button class='timer-button'>Stop This Shit</button>
+        <h2 class="heading">Hey you!!</h2>
+        <p class="text">Maybe it's time to do something different. Take a break...</p>
+        <button class='timer-button'>Okay, Got It</button>
+        <button class='timer-button secondary'>Don't Remind me again</button>
       </div>
     </div>
   </div>
