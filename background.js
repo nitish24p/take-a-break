@@ -1,6 +1,7 @@
 function Background() {
   this.timeInterval = null;
   this.storage = chrome.storage.local;
+  this.navigation = chrome.webNavigation;
   this.config = {};
 }
 
@@ -8,6 +9,16 @@ Background.prototype.init = function () {
   console.log(chrome.storage);
   chrome.runtime.onMessage.addListener(this.messageListener.bind(this));
   this.startTimer = this.startTimer.bind(this);
+  this.navigation.onCommitted.addListener(this.navigationCallback.bind(this));
+}
+
+Background.prototype.navigationCallback = function(data) {
+  if (this.timeInterval === null) {
+    if (data.config) {
+      const config = JSON.parse(data.config);
+      this.startTimer(config.timer * 1000);
+    }
+  }
 }
 
 Background.prototype.startTimer = function (delay) {
@@ -24,9 +35,7 @@ Background.prototype.messageListener = function (messageObj, sender) {
   switch (message) {
     case 'START_REMOVING_POPUP':
       console.log('getting config', this.config);
-      messageContent = 'REMOVE_POP_UP'
-      this.timeInterval = this.startTimer(this.config.timer);
-      this.sendMessageToTabs({ message: messageContent });
+      this.timeInterval = this.startTimer(this.config.timer * 1000);
       break;
 
     case 'SET_TIME_INTERVAL':

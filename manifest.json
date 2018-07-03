@@ -15,7 +15,7 @@
       "js": ["contentScript.js"]
     }
   ],
- "permissions": ["activeTab", "tabs", "storage"],
+ "permissions": ["activeTab", "tabs", "storage", "webNavigation"],
  "web_accessible_resources": [
    "logo.png",
    "content.css"

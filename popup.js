@@ -55,7 +55,7 @@ Timer.prototype.handleButtonClick = function () {
   const message = 'SET_TIME_INTERVAL';
   value = parseInt(this.inputField.value, 10);
   this.config.status = this.toggle.checked;
-  this.config.timer = this.convertMinutesToMs(value);
+  this.config.timer = value;
   this.sendMessage(
     { message,
       timeInterval: this.convertMinutesToMs(value),
