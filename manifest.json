@@ -1,5 +1,5 @@
 {
- "manifest_version": 2,
+ "manifest_version": "1.0.1",
  "name": "Take A Break",
  "description": "Timer on your chrome browser to remind you of excess screen time",
  "version": "1.0.0",
