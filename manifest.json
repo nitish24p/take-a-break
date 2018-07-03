@@ -1,8 +1,8 @@
 {
- "manifest_version": "1.0.1",
+ "manifest_version": 2,
  "name": "Take A Break",
  "description": "Timer on your chrome browser to remind you of excess screen time",
- "version": "1.0.0",
+ "version": "1.0.1",
  "author": "Nitish Phanse",
  "icons": {
    "16": "logo.png",
