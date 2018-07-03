@@ -23,7 +23,7 @@ Background.prototype.messageListener = function (messageObj, sender) {
   let messageContent = '';
   switch (message) {
     case 'START_REMOVING_POPUP':
-      debugger;
+      console.log('getting config', this.config);
       messageContent = 'REMOVE_POP_UP'
       this.timeInterval = this.startTimer(this.config.timer);
       this.sendMessageToTabs({ message: messageContent });

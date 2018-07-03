@@ -5,13 +5,11 @@ chrome.runtime.onMessage.addListener(msgObj => {
   const { message } = msgObj;
   switch (message) {
     case 'SHOW_POP_UP':
-      debugger;
       document.querySelector('body').insertAdjacentHTML('beforeend', modalString);
       const primaryButtons = document.querySelectorAll('#primbutton');
       const secondaryButtons = document.querySelectorAll('#secbutton');
       primaryButtons.forEach(button => button.addEventListener('click', closePopModal));
       secondaryButtons.forEach(button => button.addEventListener('click', stopTimer));
-      //button.onclick = closePopModal;
       break;
 
     case 'REMOVE_POP_UP':

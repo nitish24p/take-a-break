@@ -38,6 +38,7 @@
 .time-over-message-container .heading {
   color: #333;
   font-size: 30px;
+  margin: 0px;
 }
 
 .time-over-message-container .text {
