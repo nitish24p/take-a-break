@@ -42,8 +42,11 @@ Timer.prototype.handleToggleSwitch = function (event) {
       }
     })
     this.actions.classList.remove('show-item');
+    this.sendMessage({
+      message: 'STOP_TIMER'
+    });
+    this.inputField.value = '';
   }
-  console.log(event.target.checked);
 };
 
 Timer.prototype.handleButtonClick = function () {
@@ -62,10 +65,14 @@ Timer.prototype.handleButtonClick = function () {
       config: JSON.stringify(this.config) 
     }
   );
+  document.querySelector('.success').classList.add('fadeIn');
+  setTimeout(() => {
+    document.querySelector('.success').classList.remove('fadeIn');
+  }, 2500);
 };
 
 Timer.prototype.convertMinutesToMs = function(val) {
-  return val * 1 * 1000
+  return val * 60 * 1000
 }
 
 Timer.prototype.sendMessageToTab = function (message, onlyToActiveTab) {
@@ -86,7 +93,6 @@ Timer.prototype.sendMessage = function (message) {
 }
 
 Timer.prototype.messageListener = function (message, sender) {
-  console.log(message, sender);
   const { type } = message;
   switch (type) {
     case 'START_REMOVING_POPUP':

@@ -1,6 +1,3 @@
-
-console.log('loading cs');
-
 chrome.runtime.onMessage.addListener(msgObj => {
   const { message } = msgObj;
   switch (message) {
@@ -13,7 +10,6 @@ chrome.runtime.onMessage.addListener(msgObj => {
       break;
 
     case 'REMOVE_POP_UP':
-      console.log('come over here')
       const modal = document.querySelector('.white-opaque');
       document.body.removeChild(modal);
       break;
@@ -76,4 +72,4 @@ const modalString = `
       </div>
     </div>
   </div>
-`
+`;

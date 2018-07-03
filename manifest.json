@@ -1,9 +1,14 @@
 {
  "manifest_version": 2,
  "name": "Take A Break",
- "description": "The most popular movies and TV shows in your   default tab. Includes ratings, summaries and the ability to watch trailers.",
+ "description": "Timer on your chrome browser to remind you of excess screen time",
  "version": "1.0.0",
  "author": "Nitish Phanse",
+ "icons": {
+   "16": "logo.png",
+   "48": "logo.png",
+   "128": "logo.png"
+ },
   "browser_action": {
     "default_icon": "logo.png",
    "default_popup": "popup.html",
@@ -15,7 +20,7 @@
       "js": ["contentScript.js"]
     }
   ],
- "permissions": ["activeTab", "tabs", "storage", "webNavigation"],
+ "permissions": ["activeTab", "tabs", "storage"],
  "web_accessible_resources": [
    "logo.png",
    "content.css"
