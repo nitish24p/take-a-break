@@ -2,7 +2,7 @@
 Chrome extension to remind you to take a break from too much screen time
 
 <p align="center">
-  <img src="demo.gif" height="500px"/>
+  <img src="https://user-images.githubusercontent.com/13037986/42241689-0f710f92-7f29-11e8-9159-eacca13bccbb.png" height="500px"/>
 </p>
 
 &nbsp;
