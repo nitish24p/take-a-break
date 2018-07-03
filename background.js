@@ -1,9 +1,20 @@
 function Background() {
   this.timeInterval = null;
+  this.storage = chrome.storage.local;
+  this.config = {};
 }
 
 Background.prototype.init = function () {
+  console.log(chrome.storage);
   chrome.runtime.onMessage.addListener(this.messageListener.bind(this));
+  this.startTimer = this.startTimer.bind(this);
+}
+
+Background.prototype.startTimer = function (delay) {
+  return setTimeout(() => {
+    const messageContent = 'SHOW_POP_UP'
+    this.sendMessageToTabs({ message: messageContent });
+  }, delay);
 }
 
 Background.prototype.messageListener = function (messageObj, sender) {
@@ -12,15 +23,17 @@ Background.prototype.messageListener = function (messageObj, sender) {
   let messageContent = '';
   switch (message) {
     case 'START_REMOVING_POPUP':
+      debugger;
       messageContent = 'REMOVE_POP_UP'
+      this.timeInterval = this.startTimer(this.config.timer);
       this.sendMessageToTabs({ message: messageContent });
       break;
 
     case 'SET_TIME_INTERVAL':
-      this.timeInterval = setTimeout(() => {
-        messageContent = 'SHOW_POP_UP'
-        this.sendMessageToTabs({ message: messageContent });
-      }, messageObj.timeInterval);
+      this.config = JSON.parse(messageObj.config);
+      this.storage.set({ config: messageObj.config}, (data) => {
+        this.timeInterval = this.startTimer(messageObj.timeInterval);
+      })
       break;
 
     case 'STOP_TIMER_CLIENT':

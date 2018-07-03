@@ -1,16 +1,16 @@
-=//alert('I Am content');
-//chrome.runtime.onMessage.addListener()
 
 console.log('loading cs');
 
 chrome.runtime.onMessage.addListener(msgObj => {
   const { message } = msgObj;
-  console.log(msgObj);
   switch (message) {
     case 'SHOW_POP_UP':
+      debugger;
       document.querySelector('body').insertAdjacentHTML('beforeend', modalString);
-      const buttons = document.querySelectorAll('.timer-button');
-      buttons.forEach(button => button.addEventListener('click', closePopModal));
+      const primaryButtons = document.querySelectorAll('#primbutton');
+      const secondaryButtons = document.querySelectorAll('#secbutton');
+      primaryButtons.forEach(button => button.addEventListener('click', closePopModal));
+      secondaryButtons.forEach(button => button.addEventListener('click', stopTimer));
       //button.onclick = closePopModal;
       break;
 
@@ -26,7 +26,11 @@ chrome.runtime.onMessage.addListener(msgObj => {
 });
 
 function closePopModal() {
-  chrome.runtime.sendMessage({ message: "START_REMOVING_POPUP" });
+  chrome.runtime.sendMessage({ message: 'START_REMOVING_POPUP' });
+}
+
+function stopTimer () {
+  chrome.runtime.sendMessage({ message: 'STOP_TIMER_CLIENT' });
 }
 
 function injectStyles(url) {
@@ -69,8 +73,8 @@ const modalString = `
       <div class="time-over-message-container">
         <h2 class="heading">Hey you!!</h2>
         <p class="text">Maybe it's time to do something different. Take a break...</p>
-        <button class='timer-button'>Okay, Got It</button>
-        <button class='timer-button secondary'>Don't Remind me again</button>
+        <button id="primbutton" class='timer-button'>Okay, Got It</button>
+        <button id="secbutton" class='timer-button secondary'>Don't Remind me again</button>
       </div>
     </div>
   </div>

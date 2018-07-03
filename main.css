@@ -1,11 +1,19 @@
 body {
-  height: 400px;
+  height: 300px;
   width: 400px;
 }
 
 .container {
   padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
+}
+
+.error {
+  color: #ff4646;
 }
 
 .button {
@@ -51,6 +59,44 @@ body {
   outline: none;
 }
 
+.inputfield {
+  background-color: rgb(246, 246, 246);
+  height: 35px;
+  width: 240px;
+  border-color: rgb(246, 246, 246);
+  font-size: 16px;
+  box-sizing: border-box;
+  font-family: inherit;
+  color: rgb(85, 85, 85);
+  cursor: auto;
+  height: 44px;
+  border-width: 1px;
+  border-style: solid;
+  border-image: initial;
+  border-radius: 3px;
+  padding: 10px 16px;
+  transition: border-color 0.25s, box-shadow 0.25s;
+  margin-bottom: 20px;
+}
+
+.actions {
+  transition: opacity 0.5s;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.show-item {
+  opacity: 1;
+}
+
+.inputfield:focus {
+  box-shadow: rgb(10, 132, 174) 0px 0px 0px 1px;
+  border-color: rgb(10, 132, 174);
+  outline: none;
+}
+
 input[type=checkbox]{
 	height: 0;
 	width: 0;
@@ -81,7 +127,7 @@ label:after {
 }
 
 input:checked + label {
-	background: #0095ff;
+	background: rgb(10, 132, 174);
 }
 
 input:checked + label:after {

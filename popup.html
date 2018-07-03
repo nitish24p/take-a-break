@@ -10,10 +10,18 @@
 </head>
 <body>
   <div class="container">
-    <input type="checkbox" id="switch" />
-    <label for="switch">Toggle</label>
-    <button class="button">Click Me To Start Timer</button>
+    <div>
+      <input type="checkbox" id="switch" class='toggle-switch'/>
+      <label for="switch">Toggle</label>
+    </div>
     
+    <div class="actions">
+      <input type="number" placeholder="Number of minutes" class="inputfield">
+      <button class="button">Start Timer</button>
+    </div>
+    
+    <p class="error"></p>
+    <p class="success"></p>
   </div>
 </body>
 </html>
