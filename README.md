@@ -8,7 +8,7 @@ Chrome extension to remind you to take a break from too much screen time
 &nbsp;
 
 
-📦[Install it from the chrome webstore](https://chrome.google.com/webstore/detail/twitter-timer/gcbkjfaggekcnfmlbnkcdpfphcfgdceg)
+📦[Install it from the chrome webstore](https://chrome.google.com/webstore/detail/take-a-break/mfpgdpdnmaghepcfgkefagnkefcpolce)
 
 &nbsp;
 
