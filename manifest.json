@@ -17,7 +17,7 @@
   "content_scripts": [
     {
       "matches": ["https://*/*", "http://*/*"],
-      "js": ["contentScript.js"]
+      "js": ["content_script.js"]
     }
   ],
  "permissions": ["activeTab", "tabs", "storage"],
